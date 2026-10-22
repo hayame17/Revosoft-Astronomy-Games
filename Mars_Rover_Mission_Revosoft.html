@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mars Rover Mission | Revosoft</title>
+<style>
+:root{--bg:#090e1d;--panel:#131d32;--line:#30415f;--text:#f4f7ff;--muted:#aab8d2;--cyan:#69e4ff;--green:#78f0b2;--red:#ff8792;--orange:#ffad70}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% 0%,#27345c,transparent 36%),radial-gradient(ellipse at 90% 20%,#442740,transparent 28%),var(--bg);color:var(--text);font:16px/1.45 Inter,Segoe UI,Arial,sans-serif}
+.wrap{width:min(1160px,94%);margin:auto;padding:24px 0 36px}.header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(135deg,#ffad70,#e95872);font-size:26px}.eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--cyan);font-weight:800}h1{font-size:clamp(1.7rem,4vw,2.6rem);letter-spacing:-.04em;margin:2px 0}.pill,.badge{border:1px solid var(--line);border-radius:99px;padding:7px 11px;color:var(--muted);font-size:.78rem}.intro{color:var(--muted);max-width:720px;margin:0 0 20px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}.stat,.panel{background:linear-gradient(145deg,#16213af5,#101829f5);border:1px solid var(--line);border-radius:17px;box-shadow:0 12px 30px #0002}.stat{padding:13px 15px}.label{font-size:.72rem;color:var(--muted)}.value{font-size:1.45rem;font-weight:850;margin-top:3px}.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;align-items:start}.panel{padding:17px}.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px}h2{font-size:1rem;margin:0}.sub{font-size:.8rem;color:var(--muted);margin-top:4px}
+select,button{font:inherit;color:var(--text);background:#1c2a46;border:1px solid #405477;border-radius:10px;padding:9px 11px}select{max-width:130px}button{font-weight:750;cursor:pointer;transition:.15s}button:hover{border-color:var(--cyan);transform:translateY(-1px)}button:disabled{opacity:.4;cursor:not-allowed;transform:none}button.primary{background:linear-gradient(135deg,#62dff2,#9a9bff);color:#081323;border:0}button.go{background:linear-gradient(135deg,#78f0b2,#48cfa3);color:#082016;border:0}button.danger{background:#3a202e;border-color:#754351;color:#ffb7be}
+.board-wrap{padding:10px;border:1px solid #293957;border-radius:14px;background:#0a1222}.board{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;aspect-ratio:1}.cell{min-width:0;position:relative;display:grid;place-items:center;border-radius:8px;border:1px solid #3b4963;background:linear-gradient(145deg,#30374a,#20273a);font-size:clamp(1rem,3.5vw,1.8rem);overflow:hidden}.cell.start{background:linear-gradient(145deg,#24505b,#193744);border-color:#4ca7b8}.cell.goal{background:linear-gradient(145deg,#3c553e,#243c30);border-color:#71c38f}.cell.rock{background:linear-gradient(145deg,#59414a,#382a3a);border-color:#875261}.cell.rover{box-shadow:inset 0 0 0 2px var(--cyan),0 0 15px #69e4ff44}.tile-label{position:absolute;bottom:2px;right:3px;font-size:.48rem;color:#d0d9ec;letter-spacing:.04em}.legend{display:flex;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:.75rem;margin:10px 0}.legend span{display:flex;align-items:center;gap:5px}.swatch{width:10px;height:10px;border-radius:3px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.message{margin-top:12px;padding:11px 12px;border-radius:11px;border:1px solid var(--line);background:#101a2e;color:#d6e0f5;font-size:.85rem;min-height:43px}.message.success{color:#a5f5cb;background:#102b29;border-color:#398b6e}.message.error{color:#ffb9c0;background:#301b29;border-color:#8b4655}.tip{margin-top:12px;padding:12px;border-radius:11px;background:#131f35;color:var(--muted);font-size:.8rem}.right{display:grid;gap:16px}.commands{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.cmd{display:flex;flex-direction:column;align-items:center;gap:4px;min-height:78px}.cmd .icon{font-size:1.35rem}.cmd small{color:var(--muted);font-size:.7rem}.queuebox{margin-top:14px;border:1px solid var(--line);border-radius:12px;background:#0c1527;padding:11px}.queuehead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;font-size:.85rem}.queue{display:flex;gap:6px;flex-wrap:wrap;min-height:30px}.chip{display:flex;align-items:center;gap:6px;background:#22314e;border:1px solid #405578;border-radius:8px;padding:6px 8px;font-size:.78rem}.chip button{padding:0 3px;border:0;background:transparent;color:#ffb0b8}.empty{font-size:.8rem;color:#7f8eaa;padding:5px}.missionrow{display:flex;gap:11px;align-items:flex-start}.missionicon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#292b4e;font-size:1.25rem;flex:none}.missionrow p{color:var(--muted);font-size:.84rem;margin:5px 0 0}.progress{height:7px;border-radius:99px;background:#27344d;overflow:hidden;margin-top:10px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),#a995ff)}.record{margin-top:12px}.tiny{font-size:.77rem;color:var(--muted)}kbd{font:inherit;border:1px solid #405477;border-radius:4px;padding:1px 5px;color:#e5edff}footer{text-align:center;color:#7786a3;font-size:.74rem;margin-top:20px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.pill{display:none}}@media(max-width:440px){.stats{grid-template-columns:repeat(2,1fr)}.panel{padding:12px}.board{gap:3px}.board-wrap{padding:6px}.cell{border-radius:5px}.controls button{flex:1}}
+</style>
+</head>
+<body><div class="wrap">
+<header class="header"><div class="brand"><div class="logo">🚀</div><div><div class="eyebrow">REVOSOFT • CODE THE COSMOS</div><h1>Mars Rover Mission</h1></div></div><div class="pill">MISSION CONTROL // 01</div></header>
+<p class="intro">Program the rover, navigate the Martian terrain, and reach the research beacon. Plan your commands carefully — every move counts.</p>
+<div class="stats">
+<div class="stat"><div class="label">CURRENT SCORE</div><div class="value" id="score">0</div></div><div class="stat"><div class="label">COMMANDS USED</div><div class="value" id="used">0</div></div><div class="stat"><div class="label">MISSION TIME</div><div class="value" id="timer">00:00</div></div><div class="stat"><div class="label">MISSIONS CLEARED</div><div class="value" id="cleared">0 / 3</div></div>
+</div>
+<div class="layout">
+<section class="panel">
+<div class="head"><div><h2>🪐 Martian terrain</h2><div class="sub">Grid navigation • 7 × 7 sector</div></div><select id="levelSelect" aria-label="Choose mission"><option value="0">Mission 01</option><option value="1">Mission 02</option><option value="2">Mission 03</option></select></div>
+<div class="board-wrap"><div class="board" id="board" aria-label="Mars mission grid"></div></div>
+<div class="legend"><span><i class="swatch" style="background:#24505b"></i> Launch pad</span><span><i class="swatch" style="background:#3c553e"></i> Beacon</span><span><i class="swatch" style="background:#59414a"></i> Rock / obstacle</span></div>
+<div class="controls"><button class="primary" id="stepBtn">▶ Step</button><button class="go" id="runBtn">⚡ Run program</button><button id="undoBtn">↶ Undo</button><button id="resetBtn">⟲ Reset rover</button></div>
+<div class="message" id="message" role="status" aria-live="polite">Mission ready. Add commands, then run your program.</div>
+<div class="tip"><b>Mission tip:</b> The rover starts facing north ⬆. Use <kbd>Step</kbd> to test one instruction or <kbd>Run program</kbd> to execute the full sequence.</div>
+</section>
+<aside class="right">
+<section class="panel"><div class="head"><div><h2>⌘ Command console</h2><div class="sub">Build your instruction sequence</div></div><span class="badge" id="queueCount">0 / 24</span></div>
+<div class="commands"><button class="cmd" data-cmd="forward"><span class="icon">⬆️</span><span>Move forward</span><small>1 tile</small></button><button class="cmd" data-cmd="left"><span class="icon">↶</span><span>Turn left</span><small>90°</small></button><button class="cmd" data-cmd="right"><span class="icon">↷</span><span>Turn right</span><small>90°</small></button></div>
+<div class="queuebox"><div class="queuehead"><b>Program queue</b><button class="danger" id="clearBtn" style="padding:5px 8px;font-size:.74rem">Clear all</button></div><div class="queue" id="queue"><div class="empty">Your commands will appear here…</div></div></div>
+<div class="tiny" style="margin-top:10px">Keyboard: <kbd>↑</kbd> forward, <kbd>←</kbd> left, <kbd>→</kbd> right, <kbd>Space</kbd> run.</div></section>
+<section class="panel"><div class="head"><div><h2>🎯 Mission briefing</h2><div class="sub" id="missionName">First contact</div></div><span class="badge" id="difficulty">EASY</span></div><div class="missionrow"><div class="missionicon">📡</div><div><b>Reach the research beacon</b><p id="description">Navigate around the rocks and guide the rover to the green beacon.</p></div></div><div style="display:flex;justify-content:space-between;margin-top:14px;font-size:.8rem"><span class="tiny">Mission progress</span><b id="progressText">0%</b></div><div class="progress"><span id="progressBar"></span></div><div class="controls"><button id="hintBtn">💡 Get a hint</button><button class="primary" id="nextBtn" disabled>Next mission →</button></div></section>
+<section class="panel"><div class="head"><div><h2>🏆 Mission record</h2><div class="sub">Saved on this device</div></div></div><div class="missionrow"><div class="missionicon">⭐</div><div><b id="bestScore">0 points</b><p id="bestDetail">Complete a mission to set your record.</p></div></div><div class="controls"><button id="newBtn">↻ New attempt</button></div></section>
+</aside></div>
+<footer>REVOSOFT • CODE THE COSMOS | Educational prototype • Runs locally in your browser</footer></div>
+<script>
+(()=>{
+const N=7,MAX=24;
+const missions=[
+{name:"First contact",difficulty:"EASY",start:[6,0],goal:[0,6],rocks:[[5,2],[4,2],[3,4],[2,4]],hint:"Move north from the launch pad, then use the open corridor to turn east toward the beacon. Avoid the rocks in the middle.",desc:"Learn how turning changes the rover's direction and find a safe route to the beacon."},
+{name:"Rocky ridge",difficulty:"MEDIUM",start:[6,0],goal:[0,5],rocks:[[5,1],[4,1],[4,3],[3,3],[2,3],[1,5]],hint:"The first column is blocked near the bottom. Turn east early, then look for a safe corridor north.",desc:"A denser field of rocks makes planning and debugging more important."},
+{name:"Signal from Olympus",difficulty:"ADVANCED",start:[6,6],goal:[0,0],rocks:[[5,4],[5,2],[4,2],[3,2],[3,4],[2,4],[1,1],[1,5]],hint:"Avoid the central wall by using the open corridor on the right before heading toward the beacon.",desc:"Plan carefully around the rock formations and reach the final research beacon."}
+];
+const $=id=>document.getElementById(id), dirs=[[-1,0],[0,1],[1,0],[0,-1]], arrow=["⬆️","➡️","⬇️","⬅️"];
+const label={forward:"Forward",left:"Turn left",right:"Turn right"},icon={forward:"⬆",left:"↶",right:"↷"};
+let level=0,commands=[],history=[],x=0,y=0,dir=0,executed=0,elapsed=0,started=null,timerId=null,running=false,cleared=new Set(),score=0;
+const m=()=>missions[level], point=a=>({x:a[1],y:a[0]}), start=()=>point(m().start), goal=()=>point(m().goal), rock=(cx,cy)=>m().rocks.some(([r,c])=>r===cy&&c===cx);
+function message(t,type=""){$("message").className="message"+(type?" "+type:"");$("message").textContent=t}
+function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function draw(){
+ $("board").innerHTML="";
+ for(let cy=0;cy<N;cy++)for(let cx=0;cx<N;cx++){
+  const c=document.createElement("div");c.className="cell";let s=start(),g=goal();
+  if(cx===s.x&&cy===s.y)c.classList.add("start");if(cx===g.x&&cy===g.y)c.classList.add("goal");if(rock(cx,cy))c.classList.add("rock");if(cx===x&&cy===y)c.classList.add("rover");
+  if(rock(cx,cy))c.innerHTML="🪨";else if(cx===g.x&&cy===g.y)c.innerHTML='<span>📡</span><span class="tile-label">BEACON</span>';else if(cx===s.x&&cy===s.y)c.innerHTML='<span>🟦</span><span class="tile-label">START</span>';
+  if(cx===x&&cy===y){c.innerHTML='<span style="display:inline-block;transform:rotate('+(dir*90)+'deg)">🚀</span>';if(cx===s.x&&cy===s.y)c.innerHTML+='<span class="tile-label">START</span>'}
+  $("board").appendChild(c);
+ }
+ const g=goal(),s=start(),dist=Math.abs(g.x-s.x)+Math.abs(g.y-s.y),travel=Math.abs(x-s.x)+Math.abs(y-s.y),pct=cleared.has(level)?100:Math.min(95,Math.round(travel/Math.max(1,dist)*100));
+ $("progressText").textContent=pct+"%";$("progressBar").style.width=pct+"%";
+}
+function drawQueue(){
+ $("queue").innerHTML="";$("queueCount").textContent=commands.length+" / "+MAX;
+ if(!commands.length){$("queue").innerHTML='<div class="empty">Your commands will appear here…</div>';return}
+ commands.forEach((cmd,i)=>{const el=document.createElement("div");el.className="chip";el.innerHTML=`<span>${i+1}.</span><b>${icon[cmd]} ${label[cmd]}</b>`;
+ const del=document.createElement("button");del.textContent="×";del.title="Remove command";del.disabled=running;del.onclick=()=>{commands.splice(i,1);executed=0;history=[];started=null;stopTimer();elapsed=0;drawQueue();update();message("Command removed. Program reset for a fresh run.")};el.appendChild(del);$("queue").appendChild(el)});
+}
+function update(){
+ $("score").textContent=score;$("used").textContent=executed;$("timer").textContent=fmt(elapsed);$("cleared").textContent=cleared.size+" / 3";
+ $("stepBtn").disabled=running||executed>=commands.length||cleared.has(level);$("runBtn").disabled=running||executed>=commands.length||cleared.has(level)||!commands.length;
+ $("undoBtn").disabled=running||!history.length;$("clearBtn").disabled=running;$("newBtn").disabled=running;$("nextBtn").disabled=!cleared.has(level)||level===2;
+ document.querySelectorAll("[data-cmd]").forEach(b=>b.disabled=running||commands.length>=MAX||cleared.has(level));
+ $("bestScore").textContent=(Number(localStorage.getItem("marsRoverBest")||0))+" points";$("bestDetail").textContent=localStorage.getItem("marsRoverBestDetail")||"Complete a mission to set your record.";
+}
+function startTimer(){if(timerId)return;if(started===null)started=Date.now()-elapsed*1000;timerId=setInterval(()=>{elapsed=Math.floor((Date.now()-started)/1000);$("timer").textContent=fmt(elapsed)},250)}
+function stopTimer(){if(timerId){clearInterval(timerId);timerId=null}}
+function step(){
+ if(executed>=commands.length)return false;const cmd=commands[executed];history.push({x,y,dir,executed,elapsed,score});startTimer();
+ if(cmd==="left")dir=(dir+3)%4;else if(cmd==="right")dir=(dir+1)%4;else{let nx=x+dirs[dir][1],ny=y+dirs[dir][0];if(nx<0||ny<0||nx>=N||ny>=N){history.pop();message("⚠️ The rover cannot leave the map. Change direction and try again.","error");return false}if(rock(nx,ny)){history.pop();message("🪨 Obstacle detected! The rover stopped before the rock. Edit your commands.","error");return false}x=nx;y=ny}
+ executed++;draw();drawQueue();update();
+ if(x===goal().x&&y===goal().y){complete();return true}
+ message(`Command ${executed} executed: ${label[cmd]}. Keep going!`);
+ if(executed>=commands.length){stopTimer();message("Program finished, but the beacon is still ahead. Add commands or start a new attempt.","error")}
+ return true;
+}
+function complete(){
+ stopTimer();cleared.add(level);const gained=100+Math.max(0,180-executed*5-elapsed);score+=gained;
+ if(score>Number(localStorage.getItem("marsRoverBest")||0)){localStorage.setItem("marsRoverBest",String(score));localStorage.setItem("marsRoverBestDetail",`Cleared ${cleared.size} mission(s) • ${fmt(elapsed)} on this mission`)}
+ message(`🎉 Mission complete! +${gained} points. Beacon reached in ${executed} commands and ${fmt(elapsed)}.`, "success");draw();drawQueue();update();
+}
+async function run(){if(running||!commands.length)return;running=true;update();drawQueue();while(running&&executed<commands.length){const ok=step();if(!ok||cleared.has(level))break;await new Promise(r=>setTimeout(r,420))}running=false;update();drawQueue()}
+function reset(clear=false){stopTimer();let s=start();x=s.x;y=s.y;dir=0;executed=0;history=[];elapsed=0;started=null;running=false;score=0;cleared.delete(level);if(clear)commands=[];draw();drawQueue();update();message("Rover reset. Review your commands and try again.")}
+function load(i){stopTimer();level=i;$("levelSelect").value=String(i);$("missionName").textContent=m().name;$("difficulty").textContent=m().difficulty;$("description").textContent=m().desc;commands=[];history=[];executed=0;elapsed=0;started=null;running=false;score=0;cleared.delete(i);let s=start();x=s.x;y=s.y;dir=0;draw();drawQueue();update();message("Mission loaded. Build a program to reach the beacon.")}
+document.querySelectorAll("[data-cmd]").forEach(b=>b.onclick=()=>{if(commands.length<MAX){commands.push(b.dataset.cmd);drawQueue();update();message(label[b.dataset.cmd]+" added to the program queue.")}});
+$("stepBtn").onclick=step;$("runBtn").onclick=run;
+$("undoBtn").onclick=()=>{let h=history.pop();if(!h)return;({x,y,dir,executed,elapsed,score}=h);started=elapsed?Date.now()-elapsed*1000:null;draw();drawQueue();update();message("Last instruction undone.")};
+$("clearBtn").onclick=()=>{commands=[];executed=0;history=[];started=null;elapsed=0;stopTimer();drawQueue();update();message("Command queue cleared.")};
+$("resetBtn").onclick=()=>reset(false);$("newBtn").onclick=()=>reset(true);$("levelSelect").onchange=e=>load(Number(e.target.value));
+$("nextBtn").onclick=()=>{if(level<2)load(level+1)};$("hintBtn").onclick=()=>message("💡 "+m().hint);
+document.addEventListener("keydown",e=>{if(["INPUT","TEXTAREA","SELECT"].includes(document.activeElement.tagName))return;if(e.key==="ArrowUp"){e.preventDefault();document.querySelector('[data-cmd="forward"]').click()}else if(e.key==="ArrowLeft"){e.preventDefault();document.querySelector('[data-cmd="left"]').click()}else if(e.key==="ArrowRight"){e.preventDefault();document.querySelector('[data-cmd="right"]').click()}else if(e.code==="Space"){e.preventDefault();$("runBtn").click()}});
+load(0);
+})();
+</script></body></html>
